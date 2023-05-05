@@ -33,6 +33,17 @@ dependencies {
     // https://mvnrepository.com/artifact/org.projectlombok/lombok-mapstruct-binding
     implementation 'org.projectlombok:lombok-mapstruct-binding:0.2.0'
 
+    // https://mvnrepository.com/artifact/org.springframework.boot/spring-boot-starter-validation
+    implementation 'org.springframework.boot:spring-boot-starter-validation:3.0.6'
+
+
+    implementation 'com.github.pagehelper:pagehelper-spring-boot-starter:1.4.6'
+
+
+    // https://mvnrepository.com/artifact/org.springframework.data/spring-data-commons
+    implementation 'org.springframework.data:spring-data-commons:3.0.5'
+
+
 }
 
 tasks.named('test') {

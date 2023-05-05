@@ -43,7 +43,7 @@ public class Response<T> {
     public static <T> Response<T> notFound(){
         Response<T> response = new Response<>();
         response.setStatus(Status.NOT_FOUND);
-        response.setSuccess(true);
+        response.setSuccess(false);
         return response;
     }
     public static <T> Response<T> ok(){
@@ -58,4 +58,11 @@ public class Response<T> {
         response.setSuccess(false);
         return response;
     }
+    public static <T> Response<T> badRequest(){
+        Response<T> response = new Response<>();
+        response.setStatus(Status.BAD_REQUEST);
+        response.setSuccess(false);
+        return response;
+    }
+
 }
