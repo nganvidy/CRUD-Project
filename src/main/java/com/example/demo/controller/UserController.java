@@ -24,13 +24,13 @@ public class UserController {
     @Autowired
     UserService userService;
     @GetMapping("/")
-    Response<List<User>> getAllUser(){
+    Response<PageInfo<User>> getAllUser(@RequestParam(defaultValue = "1") int page,@RequestParam(defaultValue = "5") int size,@RequestParam(defaultValue = "",required = false) String username){
         try {
-           List<User> users= userService.allUsers();
-            return Response.<List<User>>ok().setPayload(users).setMessage("This Is Your Data");
+           PageInfo<User> users= userService.allUsers(page,size,username);
+            return Response.<PageInfo<User>>ok().setPayload(users).setMessage("This Is Your Data");
         }catch (Exception e){
             System.out.println(e);
-            return Response.<List<User>>exception().setMessage("You Data is failed to get information").setSuccess(false);
+            return Response.<PageInfo<User>>exception().setMessage("You Data is failed to get information").setSuccess(false);
         }
     }
     @GetMapping("/find/{id}")

@@ -22,8 +22,11 @@ public class UserServiceImp implements UserService {
     @Autowired
     UserRepository userRepository;
     @Override
-    public List<User> allUsers() {
-        return userRepository.allUser();
+    public PageInfo<User> allUsers(int page,int size,String filterName) {
+        //pageHelper is here
+        PageHelper.startPage(page,size);
+         return new PageInfo<>(userRepository.allUser(filterName));
+//        return userRepository.allUser();
     }
 
     @Override

@@ -25,6 +25,13 @@ public interface AccountRepository {
     int createAccount(Account account);
     int updateAccount(Account account);
     int deleteAccount(Integer id);
+    @Results({
+            @Result(column = "account_no",property = "accountNumber"),
+            @Result(column = "account_name",property = "accountName"),
+            @Result(column = "transfer_limit",property = "transferLimit"),
+            @Result(column = "account_type",property = "accountType",one = @One(select = "getAccountTypeById"))
+    })
+    @Select("SELECT * FROM account_tb WHERE id=#{id}")
     Account findById(Integer id);
 
 

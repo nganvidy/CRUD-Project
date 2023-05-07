@@ -4,6 +4,7 @@ import com.example.demo.model.Account;
 import com.example.demo.model.User;
 import com.example.demo.model.UserAccount;
 import com.example.demo.model.request.UserRequest;
+import com.example.demo.repository.provider.UserProvider;
 import org.apache.ibatis.annotations.*;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Repository;
@@ -14,8 +15,8 @@ import java.util.List;
 @Repository
 public interface UserRepository {
 //    @Result(column = "id",property = "userId")
-    @Select("SELECT * FROM users_tb")
-    List<User> allUser();
+    @SelectProvider(type = UserProvider.class,method = "getAllUser")
+    List<User> allUser(String filterName);
 
     @Select("SELECT * FROM users_tb WHERE username ILIKE '%' || #{username} || '%'")
     List<User>findUserByName(@Param("username") String username);

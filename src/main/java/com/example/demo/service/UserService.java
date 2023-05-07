@@ -8,7 +8,7 @@ import com.github.pagehelper.PageInfo;
 import java.util.List;
 
 public interface UserService {
-    List<User> allUsers();
+    PageInfo<User> allUsers(int page,int size,String filterName);
     List<User> findUserByName(String username);
     int createUser(UserRequest user);
     int updateUser(UserRequest user,Integer id);

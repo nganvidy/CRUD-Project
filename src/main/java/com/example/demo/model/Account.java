@@ -19,4 +19,5 @@ public class Account {
     private int transferLimit;
 //    private int accountType;
     private AccountType accountType;
+    private User user;
 }
