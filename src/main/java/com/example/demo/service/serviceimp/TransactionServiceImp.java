@@ -1,6 +1,8 @@
 package com.example.demo.service.serviceimp;
 
 import com.example.demo.model.Transaction;
+import com.example.demo.model.TransactionData;
+import com.example.demo.model.UserTransaction;
 import com.example.demo.model.request.TransactionRequest;
 import com.example.demo.model.respone.ResponseTransaction;
 import com.example.demo.repository.TransactionAccountRepository;
@@ -10,6 +12,8 @@ import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
+import java.util.List;
 
 
 @Service
@@ -43,6 +47,11 @@ public class TransactionServiceImp implements TransactionService {
     public PageInfo<ResponseTransaction> getAllTransactionaccount(int page, int limit) {
         PageHelper.startPage(page,limit);
         return new PageInfo<>(transactionRepository.getAllTransactionAccount());
+    }
+
+    @Override
+    public List<TransactionData> getAllDataTransactionAccount() {
+        return transactionRepository.getAllTransactionDataUser();
     }
 
 }

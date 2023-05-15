@@ -49,4 +49,10 @@ public class TransactionProvider {
             FROM("transaction_tb");
         }}.toString();
     }
+    public static String getAllTransactionData(){
+        return new SQL(){{
+            SELECT("*");
+            FROM("transaction_tb");
+        }}.toString();
+    }
 }

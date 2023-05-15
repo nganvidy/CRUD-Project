@@ -1,5 +1,6 @@
 package com.example.demo.model.request;
 
+import jakarta.validation.constraints.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -12,9 +13,14 @@ import java.util.Date;
 @AllArgsConstructor
 @NoArgsConstructor
 public class TransactionRequest {
+//    @Pattern(regexp = "^\\d{10}$")
     private int senderAccountId;
+
     private int receiveAccountId;
+    @Min(1)
+    @Max(1000)
     private float amount;
+    @NotBlank (message = "Remark is required !")
     private String remark;
     private Date transferAt;
 }

@@ -1,9 +1,13 @@
 package com.example.demo.service;
 
 import com.example.demo.model.Transaction;
+import com.example.demo.model.TransactionData;
+import com.example.demo.model.UserTransaction;
 import com.example.demo.model.request.TransactionRequest;
 import com.example.demo.model.respone.ResponseTransaction;
 import com.github.pagehelper.PageInfo;
+
+import java.util.List;
 
 public interface TransactionService {
 
@@ -13,4 +17,7 @@ public interface TransactionService {
      int deleteTransaction(int id);
     PageInfo<ResponseTransaction> getAllTransactionaccount(int page, int limit);
 
+
+
+    List<TransactionData> getAllDataTransactionAccount();
 }

@@ -1,15 +1,18 @@
 package com.example.demo.controller;
 
 import com.example.demo.model.Transaction;
+import com.example.demo.model.TransactionData;
 import com.example.demo.model.request.TransactionRequest;
 import com.example.demo.model.respone.ResponseTransaction;
 import com.example.demo.service.TransactionService;
 import com.example.demo.utils.Response;
 import com.github.pagehelper.PageInfo;
+import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.Date;
+import java.util.List;
 
 @RestController
 @RequestMapping("/transaction")
@@ -30,7 +33,7 @@ public class TransactionController {
 
     }
     @PostMapping("/")
-    Response<Transaction> createTransaction(@RequestBody TransactionRequest transaction){
+    Response<Transaction> createTransaction(@RequestBody @Valid TransactionRequest transaction){
         try {
             System.out.println(transaction);
             int results= transactionService.createTransaction(transaction);
@@ -98,6 +101,17 @@ public class TransactionController {
             System.out.println("Error :"+ex);
             return Response.<PageInfo<ResponseTransaction>>exception().setMessage("Error Exception "+ex).setSuccess(false);
         }
+    }
+
+    @GetMapping("/allData")
+    Response<List<TransactionData>> getAllDataTransactionUser(){
+       try {
+           List<TransactionData> transactionData=transactionService.getAllDataTransactionAccount();
+           return Response.<List<TransactionData>>ok().setPayload(transactionData).setSuccess(true).setMessage("This is your data.");
+       }catch (Exception ex){
+           System.out.println("This is error :"+ex);
+           return Response.<List<TransactionData>>exception().setMessage("Error exception "+ex);
+       }
     }
 
 }
